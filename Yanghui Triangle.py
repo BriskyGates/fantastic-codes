@@ -4,13 +4,9 @@ results = []
 def triangles2():
     s = [1]
     while True:
-        z = s
-        yield z
-        z = s + [0]
-        s = [1] + [z[i] + z[i - 1] for i in range(-n, 0)]
-
-
-
+        yield s
+        s = s + [0]
+        s = [1] + [s[i] + s[i - 1] for i in range(-n, 0)]
 
 def triangles():
     L = [1]
