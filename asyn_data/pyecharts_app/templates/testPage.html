@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/jquery-3.3.1.js"></script>
+    <script src="../static/echarts.js"></script>
+
+</head>
+<body>
+<span>欢迎志强进行测试</span>
+
+<div id="main" style="width: 800px; height: 500px; margin: 0 auto;"></div>
+<script>
+    var mychart=echarts.init(document.getElementById('main'));
+            var app={
+                xfname:[],
+                yprice:[]
+            };
+        //DOM 结构绘制完毕后执行该代码
+
+        $(document).ready(function () {
+
+            getJsonData();
+            console.log(app.xfname);
+            console.log(app.yprice);
+
+            //发送ajax请求,从后台获取json数据
+
+
+        });
+
+        function getJsonData(){
+            $.ajax({
+                url:'/getData',
+                type:'POST',
+                data:{},
+                async:false,
+                dataType:'json',
+                success:function (data) {
+                    app.xfname=data.xfname
+                    app.yprice=data.yprice
+                    console.log('成功进入异步请求成功回调函数')
+                    console.log(app.xfname)
+                    console.log(app.yprice)
+
+                    mychart.setOption({
+
+                        title:{
+                            text:'异步数据加载示例'
+                        },
+                        tooltip:{},
+                        legend:{
+                            data:['销量']
+                        },
+                        xAxis:{
+                            data:app.xfname
+                        },
+                        yAxis:{
+                            {#data:app.yprice#}
+                        },
+                        series:[{
+                            name:'Price',
+                            type:'bar',
+                            data:app.yprice
+                        }]
+                    })
+                },
+                error:function (msg) {
+                    console.log(msg);
+                    alert('系统发生错误');
+                }
+
+            })
+        }
+    </script>
+
+
+
+
+</body>
+</html>
