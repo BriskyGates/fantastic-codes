@@ -16,6 +16,7 @@ print(quickSort1(list_before))
 def quickSort2(list_before):
     if len(list_before)<2:
         return list_before
+    # list_before[0:1] 是一个列表,可以与其他列表进行+运算
     return quickSort2([left_ele for left_ele in list_before[1:] if left_ele<list_before[0]])+list_before[0:1]+quickSort2([right_ele for right_ele in list_before[1:] if right_ele>=list_before[0]])
 
 print(quickSort2(list_before))
