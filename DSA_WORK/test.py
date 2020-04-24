@@ -1,2 +1,0 @@
-def ab():
-    print('a')
