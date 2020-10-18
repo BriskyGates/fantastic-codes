@@ -53,3 +53,7 @@ class WeiboLoginResource(Resource):
             'msg': '微博登录成功',
             'status': 'WEIBO_LOGIN_OK'
         })
+
+
+if __name__ == '__main__':
+    print('提交新代码')
